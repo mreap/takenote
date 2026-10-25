@@ -4,6 +4,8 @@ import '../../controllers/auth_controller.dart';
 import '../../controllers/nota_detalle_controller.dart';
 import '../../controllers/nota_form_controller.dart';
 import '../../controllers/notas_controller.dart';
+import '../../controllers/publicas_controller.dart';
+import '../../controllers/resumen_controller.dart';
 import '../../controllers/splash_controller.dart';
 import '../../models/nota.dart';
 import '../../screens/auth/login_screen.dart';
@@ -11,6 +13,8 @@ import '../../screens/auth/registro_screen.dart';
 import '../../screens/notas/nota_detalle_screen.dart';
 import '../../screens/notas/nota_form_screen.dart';
 import '../../screens/notas/notas_screen.dart';
+import '../../screens/publicas/publicas_screen.dart';
+import '../../screens/resumen/resumen_screen.dart';
 import '../../screens/splash/splash_screen.dart';
 import '../middleware/auth_middleware.dart';
 import 'app_routes.dart';
@@ -69,6 +73,22 @@ abstract final class AppPages {
             original: Get.arguments is Nota ? Get.arguments as Nota : null,
           ),
         );
+      }),
+    ),
+    GetPage(
+      name: Rutas.publicas,
+      page: () => const PublicasScreen(),
+      middlewares: _protegida,
+      binding: BindingsBuilder(() {
+        Get.put(PublicasController(Get.find()));
+      }),
+    ),
+    GetPage(
+      name: Rutas.resumen,
+      page: () => const ResumenScreen(),
+      middlewares: _protegida,
+      binding: BindingsBuilder(() {
+        Get.put(ResumenController(Get.find()));
       }),
     ),
   ];
