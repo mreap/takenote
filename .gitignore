@@ -46,3 +46,11 @@ app.*.map.json
 
 # Widget Preview related
 .widget_preview/
+
+# Variables de entorno locales (nunca se suben)
+.env
+.env.*
+!.env.example
+
+# Notas locales del asistente (no se versionan)
+CLAUDE.md
