@@ -72,7 +72,10 @@ class AuthController extends GetxController {
       await accion();
       return true;
     } on ApiException catch (e) {
-      erroresCampo.assignAll(e.erroresCampo);
+      // No usar RxMap.assignAll: guarda la referencia (aquí un mapa const).
+      erroresCampo
+        ..clear()
+        ..addAll(e.erroresCampo);
       mensajeError.value = switch (e.tipo) {
         TipoError.noAutorizado when mensajeEn401 != null => mensajeEn401,
         TipoError.conflicto when mensajeEn409 != null => mensajeEn409,
@@ -84,6 +87,8 @@ class AuthController extends GetxController {
     }
   }
 
+  /// Llamar desde acciones del usuario (tocar, volver), nunca durante un
+  /// build o `initState`: hay pantallas observando estos valores.
   void limpiarError() {
     mensajeError.value = null;
     erroresCampo.clear();
@@ -92,6 +97,7 @@ class AuthController extends GetxController {
   Future<void> cerrarSesion() async {
     await _repo.cerrarSesion();
     usuario.value = null;
+    limpiarError();
     Get.offAllNamed(Rutas.login);
   }
 

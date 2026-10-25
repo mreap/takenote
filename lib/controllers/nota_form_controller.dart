@@ -93,7 +93,10 @@ class NotaFormController extends GetxController {
       _sincronizar(resultado);
       return resultado;
     } on ApiException catch (e) {
-      erroresCampo.assignAll(e.erroresCampo);
+      // No usar RxMap.assignAll: guarda la referencia (aquí un mapa const).
+      erroresCampo
+        ..clear()
+        ..addAll(e.erroresCampo);
       mensajeError.value = e.mensaje;
       return null;
     } finally {

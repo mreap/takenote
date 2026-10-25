@@ -22,12 +22,6 @@ class _LoginScreenState extends State<LoginScreen> {
   final _clave = TextEditingController();
 
   @override
-  void initState() {
-    super.initState();
-    _auth.limpiarError();
-  }
-
-  @override
   void dispose() {
     _correo.dispose();
     _clave.dispose();
@@ -92,7 +86,10 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           const SizedBox(height: 12),
           TextButton(
-            onPressed: () => Get.toNamed(Rutas.registro),
+            onPressed: () {
+              _auth.limpiarError();
+              Get.toNamed(Rutas.registro);
+            },
             child: const Text('¿No tienes cuenta? Regístrate'),
           ),
         ],

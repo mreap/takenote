@@ -60,5 +60,12 @@ void main() {
       expect(c.erroresCampo['titulo'], 'muy largo');
       expect(c.mensajeError.value, isNotNull);
     });
+
+    test('tras un error sin campos se puede seguir editando', () async {
+      when(() => repo.crear(any())).thenThrow(errorSinConexion);
+      final c = NotaFormController(repo)..titulo.text = 'x';
+      expect(await c.guardar(), isNull);
+      expect(() => c.erroresCampo.remove('titulo'), returnsNormally);
+    });
   });
 }

@@ -32,5 +32,8 @@ class SplashController extends GetxController {
     }
   }
 
-  void irALogin() => Get.offAllNamed(Rutas.login);
+  void irALogin() {
+    _auth.limpiarError();
+    Get.offAllNamed(Rutas.login);
+  }
 }
