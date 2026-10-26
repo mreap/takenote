@@ -7,20 +7,28 @@ Esta aplicación permite registrar notas de diverso tipo (gastos, recordatorios,
 ## Capturas de pantalla
 
 - Login:
-![Texto alternativo](docs/capturas/01_login.png)
+
+    ![Texto alternativo](docs/capturas/01_login.png)
+
 - Lista de notas:
-![Texto alternativo](docs/capturas/02_lista_notas.png)
+
+    ![Texto alternativo](docs/capturas/02_lista_notas.png)
+
 - Resumen de las notas mediante IA (se uso DeepSeek):
-![Texto alternativo](docs/capturas/03_resumen_notas_IA.png)
+
+    ![Texto alternativo](docs/capturas/03_resumen_notas_IA.png)
+
 - Datos sin conexión:
-![Texto alternativo](docs/capturas/04_lista_sin_conexion.png)
+
+    ![Texto alternativo](docs/capturas/04_lista_sin_conexion.png)
+
 
 ## Qué incluye
 
 - [X] Registro e inicio de sesión (JWT con backend propio, publicado en un VPS y hecho con Python)
 - [X] Lista principal con estados de carga, vacío y error
 - [X] Persistencia local que sobrevive al reinicio (solo funciona si ya se hizo login y se perdió la conexión posteriormente)
-- [X] Datos remotos protegidos por autorización (<tu entidad>)
+- [X] Datos remotos protegidos por autorización (mrea@utn.edu.ec)
 - [X] Asistente con IA mediante un servidor intermedio, sin claves en la app
 - [X] Estado compartido con GetX
 
@@ -47,7 +55,6 @@ Se genera con GitHub Actions al subir una etiqueta `v*` (ver `.github/workflows/
 
 ## Arquitectura
 
-```text
 | Carpeta | Función |
 | :--- | :--- |
 | **app/** | Configuración: rutas, tema, URL y arranque |
@@ -57,10 +64,6 @@ Se genera con GitHub Actions al subir una etiqueta `v*` (ver `.github/workflows/
 | **repositories/** | Operaciones de la API por área |
 | **screens/** | Pantallas de la app |
 | **widgets/** | Componentes visuales reutilizables |
-
-```
-
-<Un párrafo: cómo viaja un dato desde el servidor hasta la pantalla en tu app.>
 
 ## Decisión técnica propia
 
